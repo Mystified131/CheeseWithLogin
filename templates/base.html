@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+    <head>
+            <title>CHEESE "MVC"</title>
+
+            <link rel="stylesheet" href = "/static/tomcat.css">
+
+    </head>
+<body>
+
+    {% block content %}
+    {% endblock %}
+
+    {% with messages = get_flashed_messages() %}
+
+    {% for message in messages %}
+        <p><em>{{message}}</em></p><br>
+
+        {% endfor %}
+{% endwith %}
+
+</body>
+</html>

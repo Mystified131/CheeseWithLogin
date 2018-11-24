@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block content %}
+<body>
+
+<div align= "center">
+<div id=box>
+
+  <h1>Cheese "MVC":</h1>
+
+  <h5 align = "center"><em>The Python Version. By Thomas Park.</em></h5>
+
+  <div align = center>
+    <img width = "700" src = "/static/cheeses.jpg">
+</div>
+
+ <h3 align = "center">Please give me some cheese.</h3>
+
+<form action = '/add' method = 'POST' align = "center">
+
+  <h2>Let's Get Started.</h2><br>
+  <label> Please enter the name of a cheese.<br><br>
+          <input name="name" type="text" value = "" />
+      </label>
+
+<br><br>
+
+  <label> Please enter the description of a cheese.<br><br>
+          <input name="descript" type = "text" value = "" />
+      </label>
+
+<br><br>
+
+<input type="submit" />
+
+<br><br>
+{{error}}
+<br>
+
+</div>
+</form>
+
+<div align=center>
+    <div id=box>
+<form action = '/remove' method = 'POST' align = "center">
+
+    <h2>Remove a cheese.</h2><br>
+    <label> Please enter the name of the cheese to remove.<br><br>
+            <input name="remname" type="text" value = "" />
+        </label>
+
+  <input type="submit" />
+  
+  <br><br>
+  {{error2}}
+  <br>
+  </div>
+  </form>
+  
+<div align=center>
+    <div id=box>
+    <h1>Here are the cheeses we have:</h1><br>
+
+    <ul align = "left">
+        {% for cheese in cheeses %}
+        <li>{{cheese}}</li>
+        {% endfor %}
+    </ul>
+    
+<br><br>
+
+<p align = "center">Press <a href = "/logout">here</a> to logout.</p>
+
+    </div>
+    {% endblock %}
