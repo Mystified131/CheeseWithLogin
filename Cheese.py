@@ -188,6 +188,8 @@ def remove():
         cheeselist.sort()
         return render_template('index.html', cheeses = cheeselist, error2 = error2)
 
+## THE GHOST OF THE SHADOW ##
+
 if __name__ == '__main__':
     app.run()
 
