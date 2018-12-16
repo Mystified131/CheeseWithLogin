@@ -68,7 +68,11 @@ def login():
         email = request.form['email']
         password = request.form['password']
         user = User.query.filter_by(email=email).first()
-        if user and check_pw_hash(password, user.password):
+        if user:
+            timestr = user.timestamp
+            xnum = timestr[19]
+            key = int(xnum)
+        if user and check_pw_hash(password, user.password, key):
             session['email'] = email
             #flash("Logged in")
             return redirect('/cheese')
@@ -93,12 +97,19 @@ def signup():
             return redirect('/signup')
         existing_user = User.query.filter_by(email=email).first()
         if not existing_user:
+            right_now = datetime.datetime.now().isoformat()
+            list = []
+            for i in right_now:
+                if i.isnumeric():
+                    list.append(i)
+            timestam = "".join(list)
+            timestamp = str(timestam)
+            xnum = timestamp[19]
+            key = int(xnum)
             salt = make_salt()
-            keynm = random.randrange(6)
-            hash = make_pw_hash(password, keynm)
-            keyst = str(keynm)
-            password = salt + keyst + hash
-            new_user = User(email, password)
+            hash = make_pw_hash(password, key)
+            password = salt + hash
+            new_user = User(timestamp, email, password)
             db.session.add(new_user)
             db.session.commit()
             session['email'] = email
