@@ -22,10 +22,12 @@ class Cheese(db.Model):
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    timestamp = db.Column(db.String(120))
     email = db.Column(db.String(120))
     password = db.Column(db.String(120))
 
-    def __init__(self, email, password):
+    def __init__(self, timestamp, email, password):
+        self.timestamp = timestamp
         self.email = email
         self.password = password
 
