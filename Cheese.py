@@ -134,10 +134,6 @@ def index():
     cheeselist.sort()
     return render_template('index.html', cheeses = cheeselist)
 
-@app.route("/login", methods =['GET', 'POST'])
-def frontpage():
-    return render_template('login.html')
-
 @app.route("/add", methods =['GET', 'POST'])
 def add():
     error = ""
