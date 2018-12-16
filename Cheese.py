@@ -45,13 +45,16 @@ def make_pw_hash(password, keynum):
     hashlist.append(hashlib.sha256(str.encode(password)).hexdigest())
     hashlist.append(hashlib.sha384(str.encode(password)).hexdigest())
     hashlist.append(hashlib.sha512(str.encode(password)).hexdigest())
+    hashlist.append(hashlib.md5(str.encode(password)).hexdigest())
+    hashlist.append(hashlib.sha224(str.encode(password)).hexdigest())
+    hashlist.append(hashlib.sha512(str.encode(password)).hexdigest())
+    hashlist.append(hashlib.sha1(str.encode(password)).hexdigest())
     hash = hashlist[keynum]
     return hash
 
-def check_pw_hash(password, hash):
-    hash2 = hash[6:]
-    hash3 = int(hash[5])
-    if make_pw_hash(password, hash3) == hash2:
+def check_pw_hash(password, hash, key):
+    hash2 = hash[5:]
+    if make_pw_hash(password, key) == hash2:
         return True
     else:
         return False
